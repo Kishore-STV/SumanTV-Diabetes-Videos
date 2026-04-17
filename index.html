@@ -213,7 +213,7 @@ const CONFIG = {
   // 1. Your YouTube Data API v3 key
   //    Get one free at: https://console.cloud.google.com
   //    Enable "YouTube Data API v3" then create an API key
-  API_KEY: "AIzaSyCmN_Hhtmh7o9hkd5E6z5RkOBP3hyVugoQ",
+  API_KEY: "AIzaSyAviCoYAY7sT67KTlFMKsidKd8TYeYQEO8",
 
   // 2. Your YouTube video IDs (from the URL: youtube.com/watch?v=VIDEO_ID)
   //    First ID = big featured video. Rest = grid below.
@@ -286,7 +286,7 @@ const CONFIG = {
 
   // 3. Page header text (optional)
   PAGE_TITLE:    "Most Reached",
-  PAGE_SUBTITLE: "Videos",
+  PAGE_SUBTITLE: "Videos on Diabetes",
   PAGE_DESC:     "Content that connected with millions — watch our highest-impact videos right here.",
 };
 /* ============================================================ */
@@ -319,12 +319,22 @@ function embedUrl(id) {
 // ── Fetch from YouTube API ────────────────────────────────────
 
 async function fetchVideoData(ids) {
-  const joined = ids.join(',');
-  const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${joined}&key=${CONFIG.API_KEY}`;
-  const res  = await fetch(url);
-  if (!res.ok) throw new Error(`YouTube API error: ${res.status}`);
-  const data = await res.json();
-  return data.items;
+  // YouTube API allows max 50 IDs per request — split into chunks
+  const chunkSize = 50;
+  const chunks = [];
+  for (let i = 0; i < ids.length; i += chunkSize) {
+    chunks.push(ids.slice(i, i + chunkSize));
+  }
+  const allItems = [];
+  for (const chunk of chunks) {
+    const joined = chunk.join(',');
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${joined}&key=${CONFIG.API_KEY}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`YouTube API error: ${res.status}`);
+    const data = await res.json();
+    allItems.push(...data.items);
+  }
+  return allItems;
 }
 
 // ── Render ────────────────────────────────────────────────────
