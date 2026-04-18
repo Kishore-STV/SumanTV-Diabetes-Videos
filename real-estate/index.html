@@ -9,45 +9,48 @@
 
 <style>
 :root {
-  /* LIGHT THEME FOR PAGE & HERO */
-  --bg:      #F8F9FA; 
-  --surface: #FFFFFF; 
-  --brand-main: #bf0064; 
-  --brand-accent: #FF1D58; 
-  --border:  rgba(0,0,0,0.06); 
-  --text:    #111111; 
-  --muted:   #666666;
-  --body:    #4A4A4A;
+  /* RICH MAROON THEME */
+  --bg-dark:     #2A0815; 
+  --bg-light:    #4D0E26;
+  --brand-main:  #bf0064; 
+  --brand-accent:#FF1D58; 
+  --brand-grad:  linear-gradient(135deg, #FF7EB3, #FF1D58);
   
-  /* DARK THEME SPECIFICALLY FOR CARDS (Cinema Mode) */
-  --card-bg:     #0D1117;
-  --card-surface:#161B22;
-  --card-border: rgba(255,255,255,0.08);
-  --card-text:   #FFFFFF;
-  --card-muted:  #8B949E;
+  --text:        #FFFFFF; 
+  --muted:       #FFB3C6; 
+  --body:        #E2E8F0;
+  --border:      rgba(255, 255, 255, 0.1); 
   
-  --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
-  --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
-  --shadow-card: 0 16px 40px rgba(0,0,0,0.4);
+  /* VIDEO CARD THEME */
+  --card-bg:     rgba(20, 3, 8, 0.4); 
+  --card-border: rgba(255, 255, 255, 0.08);
+  
+  /* CARD STATS FOOTER */
+  --footer-bg:   rgba(0, 0, 0, 0.25);
+  --footer-text: #FFFFFF; 
+  --footer-muted:#FFB3C6; 
+  
+  --shadow-md:   0 12px 32px rgba(0,0,0,0.3);
+  --shadow-card: 0 16px 40px rgba(0,0,0,0.5);
 }
 
 body {
-  background: var(--bg);
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: 'Syne', sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
-/* ─── CUSTOM SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: #CCC; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--brand-main); }
-::selection { background: rgba(191,0,100,0.1); color: var(--brand-main); }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: #6A1A3A; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-accent); }
+::selection { background: rgba(255,29,88,0.3); color: #FFF; }
 
-/* ─── ANIMATED MESH BACKGROUND (Lightened for Hero) ─── */
 .mesh {
   position: fixed;
   inset: 0;
@@ -60,7 +63,7 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.12; 
+  opacity: 0.25; 
   animation: drift 25s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
 }
 
@@ -73,7 +76,6 @@ body {
   100% { transform: translate(-2vw, 8vh) scale(1.15); }
 }
 
-/* ─── NEW HERO SECTION ─── */
 .hero {
   position: relative;
   z-index: 1;
@@ -92,12 +94,13 @@ body {
   font-weight: 800;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--brand-main);
+  color: #FFF;
   margin-bottom: 24px;
   padding: 8px 20px;
   border-radius: 100px;
-  background: rgba(191,0,100,0.06);
-  border: 1px solid rgba(191,0,100,0.15);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .hero-eyebrow .dot {
@@ -121,7 +124,7 @@ body {
 }
 
 .page-title em {
-  background: linear-gradient(135deg, var(--brand-main), var(--brand-accent));
+  background: var(--brand-grad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -137,11 +140,11 @@ body {
   line-height: 1.6;
 }
 
-/* ─── DASHBOARD STATS (Glassmorphism Light) ─── */
+/* ─── DASHBOARD STATS ─── */
 .hero-dashboard {
   width: 100%;
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border);
@@ -162,29 +165,25 @@ body {
 
 .stat-label {
   display: block;
-  color: var(--muted);
   text-transform: uppercase;
   font-family: 'Syne', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
   margin-bottom: 12px;
+  background: var(--brand-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .stat-value {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: clamp(48px, 12vw, 72px);
   font-weight: 900;
-  color: var(--text);
   line-height: 1;
   letter-spacing: -2px;
-}
-
-#totalViews {
-  background: linear-gradient(135deg, var(--brand-main), var(--brand-accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFFFFF;
 }
 
 .stat-divider {
@@ -199,7 +198,7 @@ body {
   .hero-dashboard { padding: 30px 20px; }
 }
 
-/* ─── VIDEO GRID & DARK CARDS (Cinema Mode) ─── */
+/* ─── VIDEO GRID & CARDS ─── */
 .video-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -217,97 +216,212 @@ body {
 
 .video-card {
   background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-card);
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s;
+  display: flex;
+  flex-direction: column;
 }
 
 .video-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-  border-color: rgba(191,0,100,0.4);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.8);
+  border-color: rgba(255, 29, 88, 0.4);
 }
 
-.thumbnail-container img, .thumbnail-container iframe {
+/* ─── MAGIC PIP UNLOCKER ─── 
+   This removes the card's boundaries so the PiP player can escape onto the screen */
+.video-card.has-pip {
+  transform: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  overflow: visible !important;
+  z-index: 9999;
+}
+
+/* ─── FLAWLESS PiP STRUCTURE ─── */
+.thumbnail-wrapper {
   width: 100%;
-  display: block;
   aspect-ratio: 16 / 9;
+  background: #000;
+  position: relative;
+}
+
+.thumbnail-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  border-radius: 24px 24px 0 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.video-frame {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-frame img, .video-frame iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
   object-fit: cover;
   border: none;
 }
 
-.card-content { padding: 32px; }
+/* PiP ACTIVE STATE */
+.thumbnail-container.is-pip {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 320px;
+  height: 180px; 
+  z-index: 9999;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 2px var(--brand-accent); 
+  background: #000;
+  box-sizing: content-box; 
+}
+
+.pip-close-btn {
+  display: none;
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  width: 30px;
+  height: 30px;
+  background: var(--brand-accent);
+  color: #FFF;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.thumbnail-container.is-pip .pip-close-btn {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .thumbnail-container.is-pip {
+    width: 240px;
+    height: 135px; 
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+.card-content { 
+  padding: 16px 24px 0 24px; 
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 .video-title {
   font-family: 'Syne', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin: 0 0 24px 0;
+  font-size: 1.05rem; 
+  font-weight: 600;
+  margin: 0 0 16px 0; 
   line-height: 1.4;
-  color: var(--card-text);
+  color: var(--text);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  letter-spacing: -0.3px;
 }
 
+/* ─── STRICT 70/30 FOOTER SPLIT ─── */
 .card-footer {
+  background: var(--footer-bg);
+  margin: auto -24px 0 -24px; 
+  padding: 20px 24px; 
+  border-radius: 0 0 24px 24px; 
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-top: 24px;
-  border-top: 1px solid var(--card-border);
-  gap: 12px;
+  border-top: 1px solid rgba(255,255,255,0.05); 
+  box-sizing: border-box;
+}
+
+.views-stat {
+  flex: 0 0 70%;
+  width: 70%; 
+  display: flex;
+  flex-direction: column;
+  padding-right: 15px; 
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .views-label {
   display: block;
   font-family: 'Syne', sans-serif;
-  font-size: 10px;
-  color: var(--card-muted);
+  font-size: clamp(11px, 2.5vw, 13px);
+  color: var(--footer-muted);
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 1.5px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .views-count {
   font-family: 'Outfit', sans-serif;
-  font-size: 2.5rem;
+  font-size: clamp(34px, 9vw, 48px); 
   font-weight: 900;
   line-height: 1;
   letter-spacing: -1px;
-  color: var(--card-text);
+  color: var(--footer-text); 
+  white-space: nowrap; 
 }
 
 .watch-btn {
-  background: var(--card-surface);
-  color: var(--card-text);
-  padding: 14px 28px;
+  flex: 0 0 30%;
+  width: 30%; 
+  background: var(--brand-grad); 
+  color: #000000; 
+  padding: 16px 4px; 
   border-radius: 100px;
   font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 0.85rem;
+  font-weight: 900; 
+  font-size: clamp(12px, 3vw, 16px); 
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-  flex-shrink: 0;
   cursor: pointer;
-  border: 1px solid var(--card-border);
+  border: none;
+  box-sizing: border-box;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .watch-btn:hover {
-  background: var(--card-text);
-  color: var(--card-bg);
-  border-color: var(--card-text);
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  box-shadow: 0 8px 20px rgba(255, 29, 88, 0.4);
+  transform: translateY(-2px);
+}
+
+.play-icon {
+  font-size: 0.9em;
+  margin-right: 6px;
+  padding-bottom: 2px;
 }
 
 #loadingState { text-align: center; padding: 50px; font-size: 1.2rem; font-weight: 700; color: var(--muted); }
@@ -357,9 +471,9 @@ const PAGE_NAME = "realestate"
 
 function fmt(n) {
   n = parseInt(n) || 0;
-  if (n >= 1e7) return (n / 1e7).toFixed(1).replace(/\.0$/, '') + ' Crores';
-  if (n >= 1e5) return Math.round(n / 1e5) + ' Lakhs';
-  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+  if (n >= 1e7) return parseFloat((n / 1e7).toFixed(2)) + ' Crores';
+  if (n >= 1e5) return parseFloat((n / 1e5).toFixed(2)) + ' Lakhs';
+  if (n >= 1e3) return parseFloat((n / 1e3).toFixed(1)) + 'K';
   return n;
 }
 
@@ -377,12 +491,62 @@ function fmt(n) {
     );
 
     const grid = document.getElementById("videoGrid");
+    
+    // ─── SEAMLESS CSS-BASED PiP ENGINE ───
+    let activeCard = null;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const wrapper = entry.target;
+        const card = wrapper.closest('.video-card');
+        
+        if (!activeCard || card !== activeCard) return;
+
+        const tc = activeCard.querySelector('.thumbnail-container');
+
+        if (!entry.isIntersecting) {
+          tc.classList.add('is-pip'); 
+          activeCard.classList.add('has-pip'); // <--- THE MAGIC FIX
+        } else {
+          tc.classList.remove('is-pip'); 
+          activeCard.classList.remove('has-pip'); 
+        }
+      });
+    }, { threshold: 0 }); 
+
+    function stopActiveVideo() {
+      if (activeCard) {
+        observer.unobserve(activeCard.querySelector('.thumbnail-wrapper')); 
+        
+        const id = activeCard.dataset.videoId;
+        const vf = activeCard.querySelector('.video-frame');
+        const btn = activeCard.querySelector('.watch-btn');
+        
+        vf.innerHTML = `<img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'" alt="thumbnail">`;
+        
+        activeCard.querySelector('.thumbnail-container').classList.remove('is-pip');
+        activeCard.classList.remove('has-pip'); // Clean up state
+        
+        btn.style.display = 'flex';
+        activeCard.classList.remove('playing');
+        activeCard = null;
+      }
+    }
+
+    // ─── GENERATE CARDS ───
     videos.forEach(v => {
       const div = document.createElement("div");
       div.className = "video-card";
+      div.dataset.videoId = v.id; 
+      
       div.innerHTML = `
-        <div class="thumbnail-container">
-          <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="thumbnail">
+        <div class="thumbnail-wrapper">
+          <div class="thumbnail-container">
+            <div class="video-frame">
+              <img src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/${v.id}/hqdefault.jpg'" alt="thumbnail">
+            </div>
+            <button class="pip-close-btn">&times;</button>
+          </div>
         </div>
         <div class="card-content">
           <h2 class="video-title">${v.title}</h2>
@@ -391,15 +555,31 @@ function fmt(n) {
               <span class="views-label">TOTAL VIEWS</span>
               <span class="views-count">${fmt(v.viewCount)}</span>
             </div>
-            <button class="watch-btn">Watch</button>
+            <button class="watch-btn">
+              <span class="play-icon">&#9654;</span> Watch
+            </button>
           </div>
         </div>
       `;
 
+      div.querySelector('.pip-close-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopActiveVideo();
+      });
+
       div.querySelector('.watch-btn').addEventListener('click', function () {
-        const tc = div.querySelector('.thumbnail-container');
-        tc.innerHTML = `<iframe src="https://www.youtube.com/embed/${v.id}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        
+        stopActiveVideo();
+
+        activeCard = div;
+        const vf = div.querySelector('.video-frame');
+        
+        vf.innerHTML = `<iframe src="https://www.youtube.com/embed/${v.id}?autoplay=1&modestbranding=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        
         this.style.display = 'none';
+        div.classList.add('playing');
+        
+        observer.observe(div.querySelector('.thumbnail-wrapper'));
       });
 
       grid.appendChild(div);
