@@ -3,227 +3,356 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Real Estate Videos - Mega Stats</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;700;800;900&display=swap" rel="stylesheet">
+<title>Real Estate Portfolio - SumanTV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@400;700;800;900&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#05070a;
-  --card:#11151d;
-  --border:rgba(255,255,255,0.1);
-  --accent:#f5c518;
-  --text:#ffffff;
-  --muted:#7a8394;
-  --gold-a:#f5c518;
-  --gold-b:#e8900a;
+  /* LIGHT THEME FOR PAGE & HERO */
+  --bg:      #F8F9FA; 
+  --surface: #FFFFFF; 
+  --brand-main: #bf0064; 
+  --brand-accent: #FF1D58; 
+  --border:  rgba(0,0,0,0.06); 
+  --text:    #111111; 
+  --muted:   #666666;
+  --body:    #4A4A4A;
+  
+  /* DARK THEME SPECIFICALLY FOR CARDS (Cinema Mode) */
+  --card-bg:     #0D1117;
+  --card-surface:#161B22;
+  --card-border: rgba(255,255,255,0.08);
+  --card-text:   #FFFFFF;
+  --card-muted:  #8B949E;
+  
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
+  --shadow-card: 0 16px 40px rgba(0,0,0,0.4);
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Syne', sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
 
-.page-title {
-  text-align: center;
-  font-family: 'Bebas Neue', cursive;
-  font-size: 3rem;
-  letter-spacing: 2px;
-  margin-top: 40px;
-  margin-bottom: 0;
-  color: var(--text);
+/* ─── CUSTOM SCROLLBAR ─── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #CCC; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-main); }
+::selection { background: rgba(191,0,100,0.1); color: var(--brand-main); }
+
+/* ─── ANIMATED MESH BACKGROUND (Lightened for Hero) ─── */
+.mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
 }
 
-.hero-dashboard {
-  padding: 30px 0 20px 0;
+.mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12; 
+  animation: drift 25s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+.mesh-orb:nth-child(1) { width: 40vmax; height: 40vmax; background: var(--brand-main); top: -10%; left: -5%; }
+.mesh-orb:nth-child(2) { width: 35vmax; height: 35vmax; background: var(--brand-accent); top: 20%; right: -5%; animation-delay: -7s; }
+
+@keyframes drift {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(3vw, 5vh) scale(1.05); }
+  100% { transform: translate(-2vw, 8vh) scale(1.15); }
+}
+
+/* ─── NEW HERO SECTION ─── */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 100px 24px 60px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--brand-main);
+  margin-bottom: 24px;
+  padding: 8px 20px;
+  border-radius: 100px;
+  background: rgba(191,0,100,0.06);
+  border: 1px solid rgba(191,0,100,0.15);
+}
+
+.hero-eyebrow .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--brand-accent);
+  box-shadow: 0 0 10px var(--brand-accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+
+.page-title em {
+  background: linear-gradient(135deg, var(--brand-main), var(--brand-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--body);
+  max-width: 500px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+}
+
+/* ─── DASHBOARD STATS (Glassmorphism Light) ─── */
+.hero-dashboard {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 40px;
 }
 
 .stats-container {
-  width: 80%;
   display: flex;
   justify-content: center;
-  gap: 15px;
+  align-items: center;
+  gap: 40px;
 }
 
-.stat-box {
-  background: #161b25;
-  padding: 35px 10px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  flex: 1;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
+.stat-box { flex: 1; text-align: center; }
 
 .stat-label {
   display: block;
   color: var(--muted);
   text-transform: uppercase;
-  font-size: 0.7rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
 }
 
 .stat-value {
-  font-size: 3rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(40px, 6vw, 72px);
   font-weight: 900;
-  color: #ffffff;
+  color: var(--text);
   line-height: 1;
+  letter-spacing: -2px;
 }
 
 #totalViews {
-  background: linear-gradient(135deg, var(--gold-a) 0%, var(--gold-b) 100%);
+  background: linear-gradient(135deg, var(--brand-main), var(--brand-accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+.stat-divider {
+  width: 1px;
+  height: 80px;
+  background: var(--border);
+}
+
+@media (max-width: 768px) {
+  .stats-container { flex-direction: column; gap: 30px; }
+  .stat-divider { width: 100px; height: 1px; }
+  .hero-dashboard { padding: 30px 20px; }
+}
+
+/* ─── VIDEO GRID & DARK CARDS (Cinema Mode) ─── */
 .video-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
-  padding: 15px;
-  max-width: 1300px;
+  gap: 32px;
+  padding: 24px;
+  max-width: 1320px;
   margin: 0 auto 100px auto;
+  position: relative;
+  z-index: 1;
 }
 
 @media (min-width: 992px) {
-  .video-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; padding: 30px; }
-  .stats-container { width: 60%; }
-  .stat-value { font-size: 4.5rem; }
-  .page-title { font-size: 5rem; }
+  .video-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; padding: 40px; }
 }
 
 .video-card {
-  background: var(--card);
+  background: var(--card-bg);
   border-radius: 24px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s;
 }
 
-.thumbnail-container img {
+.video-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  border-color: rgba(191,0,100,0.4);
+}
+
+.thumbnail-container img, .thumbnail-container iframe {
   width: 100%;
   display: block;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-}
-
-.thumbnail-container iframe {
-  width: 100%;
-  display: block;
-  aspect-ratio: 16 / 9;
   border: none;
 }
 
-.card-content { padding: 25px; }
+.card-content { padding: 32px; }
 
 .video-title {
+  font-family: 'Syne', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
-  margin: 0 0 25px 0;
-  line-height: 1.3;
-  color: #ffffff;
+  margin: 0 0 24px 0;
+  line-height: 1.4;
+  color: var(--card-text);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  letter-spacing: -0.3px;
 }
 
 .card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  border-top: 1px solid var(--card-border);
   gap: 12px;
 }
 
 .views-label {
   display: block;
-  font-size: 0.7rem;
-  color: var(--muted);
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  color: var(--card-muted);
   text-transform: uppercase;
   font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
 }
 
 .views-count {
-  font-size: 2.6rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -1px;
-  background: linear-gradient(135deg, var(--gold-a) 0%, var(--gold-b) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-@media (min-width: 992px) {
-  .views-count { font-size: 4rem; }
+  color: var(--card-text);
 }
 
 .watch-btn {
-  background: var(--accent);
-  color: #000;
-  padding: 12px 22px;
-  border-radius: 50px;
-  font-weight: 900;
-  font-size: 0.95rem;
+  background: var(--card-surface);
+  color: var(--card-text);
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   display: flex;
   align-items: center;
   gap: 8px;
   white-space: nowrap;
   flex-shrink: 0;
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
 }
 
-#loadingState {
-  text-align: center;
-  padding: 50px;
-  font-size: 1.5rem;
-  color: var(--muted);
+.watch-btn:hover {
+  background: var(--card-text);
+  color: var(--card-bg);
+  border-color: var(--card-text);
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
-#errorState {
-  text-align: center;
-  padding: 50px;
-  font-size: 1.2rem;
-  color: #ff4444;
-  display: none;
-}
+#loadingState { text-align: center; padding: 50px; font-size: 1.2rem; font-weight: 700; color: var(--muted); }
+#errorState { text-align: center; padding: 50px; font-size: 1.2rem; color: var(--brand-accent); display: none; }
 </style>
 </head>
 <body>
 
-<h1 class="page-title">Real Estate Videos</h1>
-
-<div class="hero-dashboard">
-  <div class="stats-container">
-    <div class="stat-box">
-      <span class="stat-label">TOTAL VIDEOS</span>
-      <span class="stat-value" id="totalVideos">—</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-label">TOTAL VIEWS</span>
-      <span class="stat-value" id="totalViews">—</span>
-    </div>
-  </div>
+<div class="mesh" aria-hidden="true">
+  <div class="mesh-orb"></div>
+  <div class="mesh-orb"></div>
 </div>
 
-<div id="loadingState">Updating Stats...</div>
-<div id="errorState">Could not load stats. Please try again later.</div>
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="dot"></span>
+    Content Portfolio
+  </div>
+  
+  <h1 class="page-title">Real <em>Estate</em></h1>
+  <p class="hero-sub">Real-time viewership analytics and video performance dashboard.</p>
+  
+  <div class="hero-dashboard">
+    <div class="stats-container">
+      <div class="stat-box">
+        <span class="stat-label">Total Videos</span>
+        <span class="stat-value" id="totalVideos">—</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-box">
+        <span class="stat-label">Network Views</span>
+        <span class="stat-value" id="totalViews">—</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="loadingState">Syncing Live Data...</div>
+<div id="errorState">Could not connect to SumanTV servers. Please try again.</div>
 <div class="video-grid" id="videoGrid"></div>
 
 <script>
 // ─── ONLY THESE 2 LINES CHANGE PER PAGE ────────────────────
 const GAS_URL   = "https://script.google.com/macros/s/AKfycby_i4pPRCJDscJ3JiVWuc2bHdPf1xXahwyLzOWHkxot-E5UgmntTwOi3xdYtEZXeCRW/exec";
-const PAGE_NAME = "realestate";
+const PAGE_NAME = "realestate"
 // ───────────────────────────────────────────────────────────
 
 function fmt(n) {
@@ -262,7 +391,7 @@ function fmt(n) {
               <span class="views-label">TOTAL VIEWS</span>
               <span class="views-count">${fmt(v.viewCount)}</span>
             </div>
-            <button class="watch-btn">▶ WATCH</button>
+            <button class="watch-btn">Watch</button>
           </div>
         </div>
       `;
