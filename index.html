@@ -129,10 +129,10 @@
   .nav-links a:hover { color: var(--gold); }
 
   .nav-cta {
-    padding: 10px 24px;
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
+    padding: 10px 28px;
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    color: #0F0F0F;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 700;
@@ -144,8 +144,9 @@
   }
 
   .nav-cta:hover {
-    background: var(--gold);
-    color: #fff;
+    background: transparent;
+    border-color: #ffffff;
+    color: #ffffff;
   }
 
   /* ─── HERO ─── */
@@ -194,7 +195,7 @@
   .hero-logo {
     display: block;
     margin: 0 auto 40px;
-    height: clamp(80px, 14vw, 130px);
+    height: clamp(90px, 16vw, 160px);
     object-fit: contain;
     filter: drop-shadow(0 8px 40px rgba(191,0,100,0.5));
     animation: fadeUp 0.8s 0.15s ease both;
@@ -202,12 +203,12 @@
 
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 7vw, 82px);
+    font-size: clamp(52px, 9.5vw, 120px);
     font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    max-width: 860px;
-    margin: 0 auto 24px;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    max-width: 1100px;
+    margin: 0 auto 28px;
     animation: fadeUp 0.8s 0.3s ease both;
   }
 
@@ -245,7 +246,7 @@
 
   .stat-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 40px;
+    font-size: 56px;
     font-weight: 600;
     background: linear-gradient(90deg, #FF1D58, #FF8DA1);
     -webkit-background-clip: text;
@@ -302,8 +303,8 @@
   /* ─── SECTION HEADERS ─── */
   .section-header {
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto 64px;
+    max-width: 900px;
+    margin: 0 auto 80px;
   }
 
   .section-tag {
@@ -328,9 +329,9 @@
 
   .section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 56px);
+    font-size: clamp(44px, 7vw, 80px);
     font-weight: 300;
-    line-height: 1.15;
+    line-height: 1.1;
   }
 
   .section-title em {
@@ -513,10 +514,18 @@
     position: relative;
     z-index: 1;
     background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 48px 24px;
+    border-top: 1px solid rgba(191,0,100,0.2);
+    border-bottom: 1px solid rgba(191,0,100,0.2);
+    padding: 100px 24px;
     overflow: hidden;
+  }
+
+  .strip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(191,0,100,0.08), transparent 60%);
+    pointer-events: none;
   }
 
   .strip-inner {
@@ -525,14 +534,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    gap: 60px;
     flex-wrap: wrap;
   }
 
   .strip-text h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
+    font-size: clamp(40px, 5vw, 64px);
     font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
   }
 
   .strip-text h3 span {
@@ -545,29 +557,41 @@
 
   .strip-text p {
     color: var(--body);
-    font-size: 14px;
+    font-size: 17px;
     margin-top: 6px;
+    max-width: 500px;
+    line-height: 1.7;
   }
 
   .strip-badges {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     flex-wrap: wrap;
   }
 
   .channel-badge {
-    padding: 10px 20px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    background: rgba(255,255,255,0.03);
-    letter-spacing: 0.5px;
-    transition: border-color 0.3s;
+    display: inline-block;
+    padding: 18px 40px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    background: rgba(255,255,255,0.06);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
 
-  .channel-badge:hover { border-color: var(--gold); }
+  .channel-badge:hover {
+    border-color: var(--gold2);
+    background: rgba(191,0,100,0.12);
+    color: var(--gold2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(191,0,100,0.2);
+  }
 
   /* ─── FOOTER ─── */
   footer {
@@ -630,6 +654,8 @@
     .box { padding: 36px 24px; }
     .box-arrow { opacity: 1; transform: none; }
     .strip-inner { flex-direction: column; text-align: center; }
+    .strip { padding: 60px 24px; }
+    .channel-badge { padding: 14px 28px; font-size: 13px; }
   }
 </style>
 </head>
@@ -659,7 +685,7 @@
 <section class="hero">
   <div class="hero-eyebrow">
     <span class="dot"></span>
-    South India's No. 1 Telugu Media Network
+    India's Largest Digital Media Network
   </div>
 
   <img
@@ -701,19 +727,6 @@
     <span>Explore Portfolios</span>
   </div>
 </section>
-
-<!-- ── CHANNEL STRIP ── -->
-<div class="strip">
-  <div class="strip-inner">
-    <div class="strip-text">
-      <h3>Our <span>Channel Network</span></h3>
-      <p>Broadcasting across multiple platforms and frequencies</p>
-    </div>
-    <div class="strip-badges">
-      <div class="channel-badge">SumanTV Network</div>
-    </div>
-  </div>
-</div>
 
 <!-- ── CATEGORY GRID ── -->
 <section class="categories-section" id="portfolios">
@@ -879,6 +892,19 @@
 
   </div>
 </section>
+
+<!-- ── CHANNEL STRIP ── -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-text">
+      <h3>Our <span>Channel Network</span></h3>
+      <p>Broadcasting across multiple platforms and frequencies — from news and health to entertainment and lifestyle.</p>
+    </div>
+    <div class="strip-badges">
+      <a href="https://sumantv-frontend.vercel.app/network" target="_blank" class="channel-badge">SumanTV Network</a>
+    </div>
+  </div>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer>
