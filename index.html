@@ -642,3 +642,268 @@
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
     .hero { padding: 120px 20px 80px; }
+    .hero-stats { gap: 32px; }
+    .stat-divider { display: none; }
+    .grid { grid-template-columns: 1fr; gap: 16px; }
+    .grid .box:nth-child(1),
+    .grid .box:nth-child(2) { grid-column: span 1; }
+    .box { padding: 40px 32px; }
+    .box-arrow { opacity: 1; transform: none; }
+    .strip-inner { flex-direction: column; text-align: center; }
+    .strip { padding: 80px 24px; }
+    .channel-badge { padding: 16px 32px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mesh" aria-hidden="true">
+  <div class="mesh-orb"></div>
+  <div class="mesh-orb"></div>
+  <div class="mesh-orb"></div>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <img src="https://res.cloudinary.com/dw0e4pksi/image/upload/v1776495642/STV_HD_PNG_z4utxg.png" alt="SumanTV Logo">
+  </div>
+  <ul class="nav-links">
+    <li><a href="/about/">About</a></li>
+    <li><a href="#">Viewership</a></li>
+    <li><a href="https://sumantv.online/contact">Advertise</a></li>
+  </ul>
+  <a href="https://sumantv.online" target="_blank" class="nav-cta">Visit SumanTV</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="dot"></span>
+    India's Largest Digital Media Network
+  </div>
+
+  <img
+    class="hero-logo"
+    src="https://res.cloudinary.com/dw0e4pksi/image/upload/v1776495642/STV_HD_PNG_z4utxg.png"
+    alt="SumanTV"
+  >
+
+  <h1 class="hero-title">
+    Connecting Millions.<br>
+    <strong>Across Every Screen.</strong>
+  </h1>
+
+  <p class="hero-sub">
+    SumanTV is South India's most trusted digital media network — delivering
+    authoritative content across multiple categories to over 50 million monthly
+    viewers, with a dominant presence across Andhra Pradesh, Telangana, and beyond.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">50M+</div>
+      <div class="stat-label">Monthly Audience</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">12</div>
+      <div class="stat-label">Content Verticals</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">2014</div>
+      <div class="stat-label">Est. Year</div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    <span>Explore Portfolios</span>
+  </div>
+</section>
+
+<section class="categories-section" id="portfolios">
+  <div class="section-header">
+    <div class="section-tag">Content Portfolios</div>
+    <h2 class="section-title">
+      Curated Verticals.<br>
+      <em>Unmatched Reach.</em>
+    </h2>
+  </div>
+
+  <div class="grid">
+
+    <a href="diabetes/" class="box">
+      <div class="box-top">
+        <span class="box-icon">🩺</span>
+        <span class="box-badge">Live</span>
+      </div>
+      <div class="box-body">
+        <h2>Health & Diabetes</h2>
+        <p>Expert-led health programming covering diabetes management, preventive care, and medical breakthroughs for millions of Telugu households.</p>
+        <div class="box-arrow">
+          View Portfolio
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="real-estate/" class="box">
+      <div class="box-top">
+        <span class="box-icon">🏗️</span>
+        <span class="box-badge">Live</span>
+      </div>
+      <div class="box-body">
+        <h2>Real Estate</h2>
+        <p>Premier property showcases, luxury developments, infrastructure spotlights, and land investment insights across Andhra Pradesh & Telangana.</p>
+        <div class="box-arrow">
+          View Portfolio
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="jewelry/" class="box">
+      <div class="box-top">
+        <span class="box-icon">💎</span>
+        <span class="box-badge">Live</span>
+      </div>
+      <div class="box-body">
+        <h2>Jewelry</h2>
+        <p>Celebrating South India's finest jewellery brands — gold, diamonds, bridal collections, and premium craftsmanship.</p>
+        <div class="box-arrow">
+          View Portfolio
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <a href="shopping/" class="box">
+      <div class="box-top">
+        <span class="box-icon">🛍️</span>
+        <span class="box-badge">Live</span>
+      </div>
+      <div class="box-body">
+        <h2>Shopping & Retail</h2>
+        <p>From hyperlocal brands to national retail giants — product launches, seasonal campaigns, and commercial showcases.</p>
+        <div class="box-arrow">
+          View Portfolio
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <div class="box box-coming">
+      <div class="box-top">
+        <span class="box-icon">🌾</span>
+        <span class="box-badge soon">Coming Soon</span>
+      </div>
+      <div class="box-body">
+        <h2>Agriculture</h2>
+        <p>Farmer-focused programming on crop care, government schemes, and agri-tech innovations for rural Andhra.</p>
+      </div>
+    </div>
+
+    <div class="box box-coming">
+      <div class="box-top">
+        <span class="box-icon">🏛️</span>
+        <span class="box-badge soon">Coming Soon</span>
+      </div>
+      <div class="box-body">
+        <h2>Politics & Governance</h2>
+        <p>In-depth political analysis, legislative updates, and governance spotlights from Andhra Pradesh & Telangana.</p>
+      </div>
+    </div>
+
+    <div class="box box-coming">
+      <div class="box-top">
+        <span class="box-icon">🙏</span>
+        <span class="box-badge soon">Coming Soon</span>
+      </div>
+      <div class="box-body">
+        <h2>Devotional</h2>
+        <p>Bhakti content, temple darshans, spiritual discourses, and festival coverage rooted in Telugu tradition.</p>
+      </div>
+    </div>
+
+    <div class="box box-coming">
+      <div class="box-top">
+        <span class="box-icon">🎬</span>
+        <span class="box-badge soon">Coming Soon</span>
+      </div>
+      <div class="box-body">
+        <h2>Entertainment</h2>
+        <p>Movies, celebrity interviews, Tollywood exclusives, reality shows, and cultural programming for all ages.</p>
+      </div>
+    </div>
+
+    <div class="box box-coming">
+      <div class="box-top">
+        <span class="box-icon">📈</span>
+        <span class="box-badge soon">Coming Soon</span>
+      </div>
+      <div class="box-body">
+        <h2>Business & Finance</h2>
+        <p>Market insights, startup spotlights, SME stories, and economic intelligence for the Telugu entrepreneur.</p>
+      </div>
+    </div>
+
+    <div class="box box-coming">
+      <div class="box-top">
+        <span class="box-icon">🍛</span>
+        <span class="box-badge soon">Coming Soon</span>
+      </div>
+      <div class="box-body">
+        <h2>Food & Lifestyle</h2>
+        <p>Authentic Telugu cuisine, wellness recipes, home & living features, and culinary culture across the two states.</p>
+      </div>
+    </div>
+
+    <div class="box box-coming">
+      <div class="box-top">
+        <span class="box-icon">🎓</span>
+        <span class="box-badge soon">Coming Soon</span>
+      </div>
+      <div class="box-body">
+        <h2>Education</h2>
+        <p>Career guidance, competitive exam preparation, school & college spotlights, and EdTech partnerships.</p>
+      </div>
+    </div>
+
+    <div class="box box-coming">
+      <div class="box-top">
+        <span class="box-icon">✈️</span>
+        <span class="box-badge soon">Coming Soon</span>
+      </div>
+      <div class="box-body">
+        <h2>Travel & Tourism</h2>
+        <p>Exploring Andhra's coastline, Telangana's heritage, and the world beyond — travel stories that inspire.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-text">
+      <h3>Our <span>Channel Network</span></h3>
+      <p>Broadcasting across multiple platforms and frequencies — from news and health to entertainment and lifestyle.</p>
+    </div>
+    <div class="strip-badges">
+      <a href="https://sumantv.online/network" target="_blank" class="channel-badge">SumanTV Network</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <img src="https://res.cloudinary.com/dw0e4pksi/image/upload/v1776495642/STV_HD_PNG_z4utxg.png" alt="SumanTV">
+  </div>
+  <p class="footer-text">© 2025 SumanTV. All rights reserved. South India's Premier Digital Media Network.</p>
+  <div class="footer-links">
+    <a href="https://sumantv.online/contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
