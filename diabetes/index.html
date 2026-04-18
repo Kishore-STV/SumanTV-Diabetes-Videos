@@ -8,13 +8,12 @@
 
 <style>
 :root {
-  --bg:#05070a; 
-  --card:#11151d; 
+  --bg:#05070a;
+  --card:#11151d;
   --border:rgba(255,255,255,0.1);
-  --accent:#f5c518; 
-  --text:#ffffff; 
+  --accent:#f5c518;
+  --text:#ffffff;
   --muted:#7a8394;
-  --stat-cyan:#00f2ff;
   --gold-a:#f5c518;
   --gold-b:#e8900a;
 }
@@ -28,7 +27,6 @@ body {
   overflow-x: hidden;
 }
 
-/* --- MAIN TITLE --- */
 .page-title {
   text-align: center;
   font-family: 'Bebas Neue', cursive;
@@ -39,7 +37,6 @@ body {
   color: var(--text);
 }
 
-/* --- HERO DASHBOARD: 80% WIDTH ON MOBILE --- */
 .hero-dashboard {
   padding: 30px 0 20px 0;
   display: flex;
@@ -55,7 +52,7 @@ body {
 
 .stat-box {
   background: #161b25;
-  padding: 35px 10px; 
+  padding: 35px 10px;
   border-radius: 16px;
   border: 1px solid var(--border);
   flex: 1;
@@ -80,7 +77,6 @@ body {
   line-height: 1;
 }
 
-/* Golden gradient for TOTAL VIEWS hero stat */
 #totalViews {
   background: linear-gradient(135deg, var(--gold-a) 0%, var(--gold-b) 100%);
   -webkit-background-clip: text;
@@ -88,23 +84,17 @@ body {
   background-clip: text;
 }
 
-/* --- VIDEO GRID --- */
 .video-grid {
   display: grid;
-  grid-template-columns: 1fr; 
+  grid-template-columns: 1fr;
   gap: 30px;
   padding: 15px;
   max-width: 1300px;
   margin: 0 auto 100px auto;
 }
 
-/* Desktop: 2 per row */
 @media (min-width: 992px) {
-  .video-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    padding: 30px;
-  }
+  .video-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; padding: 30px; }
   .stats-container { width: 60%; }
   .stat-value { font-size: 4.5rem; }
   .page-title { font-size: 5rem; }
@@ -131,9 +121,7 @@ body {
   border: none;
 }
 
-.card-content {
-  padding: 25px;
-}
+.card-content { padding: 25px; }
 
 .video-title {
   font-size: 1.4rem;
@@ -147,7 +135,6 @@ body {
   overflow: hidden;
 }
 
-/* --- INDIVIDUAL CARD STATS & WATCH BUTTON --- */
 .card-footer {
   display: flex;
   justify-content: space-between;
@@ -165,7 +152,6 @@ body {
   font-weight: 800;
 }
 
-/* Mobile: tighter size so footer fits on screen */
 .views-count {
   font-size: 2.6rem;
   font-weight: 900;
@@ -184,7 +170,6 @@ body {
 .watch-btn {
   background: var(--accent);
   color: #000;
-  text-decoration: none;
   padding: 12px 22px;
   border-radius: 50px;
   font-weight: 900;
@@ -204,9 +189,16 @@ body {
   font-size: 1.5rem;
   color: var(--muted);
 }
+
+#errorState {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+  color: #ff4444;
+  display: none;
+}
 </style>
 </head>
-
 <body>
 
 <h1 class="page-title">Videos on Diabetes</h1>
@@ -225,17 +217,15 @@ body {
 </div>
 
 <div id="loadingState">Updating Stats...</div>
+<div id="errorState">Could not load stats. Please try again later.</div>
 <div class="video-grid" id="videoGrid"></div>
 
 <script>
-const CONFIG = {
-  API_KEY: "AIzaSyC9BpmOZoTWpxcetXe0lrPPQjWkgqxfYoY",
-  VIDEO_IDS: ["dXzrWlF3O4I","6myYSckGH7w","jy8rNWeDorE","Zd_8QZswqAg","H28Cy1sEz8w","BbrnPa1dsd8","qutkOlFRmeU","tFgtGvNFGV0","EW2sTwsEuZA","0oVm4bKTync","pzwbkkIW8Q4","uAQuppH011A","Qu3DhA7SWUM","IH5tMNe8IuY","c_FHHgR5zV4","1oz5Tts-byQ","-ZT8wZTQSog","B4HZ602oMT0","eyRm2aeqxXI","Bf0AnVqxFKg","VkmMxLDoOis","PTxmkE3gVFs","e9kETfGr3lY","wf8HychlCGo","fBEW8B8DO_8","YgmqR5tp0sc","QdzLdYZLZjw","uGt7YOFFNX0","p4LtdA4eJPQ","yikXU5LmEYg","1Oy5KRG6LRw","1apn6JM4x-Q","pP_j7SvCq3g","iQXgdQ_95Mo","XOwoAYEt7bk","aA_ZTg3vcTU","WrYX86SXhU4","qdh9cTgZDzc","3VfaXQ1UD0I","04KE4dwYH0M","7VsKFZ9zbd0","OvgzF_KvEhs","_nEA4BQXGQ8","I3VWxNyTLV0","FFkbk4vRVrE","5gmBqG4aeCE","ho6LZ14ziiA","6W-RdAjxK9s","PoZVlAfHy7o","WHqoRx3C-2E","tc-eScHhYTI","t7985tDmf-w","7aHkt4JWs7Y","TF2cb6F-DQU","wlA5jyk85k8","pOi3dPOfVMk","oFSutz2wCFQ","I8BUpEVKTZw","11QC-pIk50Q","Yp7b691q7P8","Hl9d28KRVUE","iKx3zUEZOhA","mMyA47cZSvE","u1WFxeJGWbs"],
-  CACHE_KEY: "diabetes_vmax_final",
-  CACHE_HOURS: 12
-};
+// ─── ONLY THESE 2 LINES CHANGE PER PAGE ────────────────────
+const GAS_URL   = "https://script.google.com/macros/s/AKfycby_i4pPRCJDscJ3JiVWuc2bHdPf1xXahwyLzOWHkxot-E5UgmntTwOi3xdYtEZXeCRW/exec";
+const PAGE_NAME = "diabetes";
+// ───────────────────────────────────────────────────────────
 
-/* Indian number format: Lakhs / Crores */
 function fmt(n) {
   n = parseInt(n) || 0;
   if (n >= 1e7) return (n / 1e7).toFixed(1).replace(/\.0$/, '') + ' Crores';
@@ -244,44 +234,18 @@ function fmt(n) {
   return n;
 }
 
-function loadCache() {
-  try {
-    const r = localStorage.getItem(CONFIG.CACHE_KEY);
-    if (!r) return null;
-    const { ts, data } = JSON.parse(r);
-    if ((Date.now() - ts) / 3600000 > CONFIG.CACHE_HOURS) return null;
-    return data;
-  } catch { return null; }
-}
-
-function saveCache(data) {
-  if (data && data.length) {
-    localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-  }
-}
-
-async function fetchVideos(ids) {
-  const all = [];
-  for (let i = 0; i < ids.length; i += 50) {
-    const chunk = ids.slice(i, i + 50).join(',');
-    const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${chunk}&key=${CONFIG.API_KEY}`);
-    const j = await res.json();
-    if (j.items) all.push(...j.items);
-  }
-  return all;
-}
-
 (async () => {
   try {
-    let videos = loadCache();
-    if (!videos) {
-      videos = await fetchVideos(CONFIG.VIDEO_IDS);
-      videos.sort((a, b) => b.statistics.viewCount - a.statistics.viewCount);
-      saveCache(videos);
-    }
+    const res = await fetch(`${GAS_URL}?page=${PAGE_NAME}`);
+    const videos = await res.json();
+
+    if (!Array.isArray(videos) || videos.length === 0) throw new Error("No data");
+
     document.getElementById("loadingState").style.display = "none";
     document.getElementById("totalVideos").textContent = videos.length;
-    document.getElementById("totalViews").textContent = fmt(videos.reduce((s, v) => s + (+v.statistics.viewCount || 0), 0));
+    document.getElementById("totalViews").textContent = fmt(
+      videos.reduce((s, v) => s + (parseInt(v.viewCount) || 0), 0)
+    );
 
     const grid = document.getElementById("videoGrid");
     videos.forEach(v => {
@@ -292,27 +256,29 @@ async function fetchVideos(ids) {
           <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="thumbnail">
         </div>
         <div class="card-content">
-          <h2 class="video-title">${v.snippet.title}</h2>
+          <h2 class="video-title">${v.title}</h2>
           <div class="card-footer">
             <div class="views-stat">
               <span class="views-label">TOTAL VIEWS</span>
-              <span class="views-count">${fmt(v.statistics.viewCount)}</span>
+              <span class="views-count">${fmt(v.viewCount)}</span>
             </div>
             <button class="watch-btn">▶ WATCH</button>
           </div>
         </div>
       `;
 
-      /* Inline video play — only on WATCH click */
       div.querySelector('.watch-btn').addEventListener('click', function () {
         const tc = div.querySelector('.thumbnail-container');
         tc.innerHTML = `<iframe src="https://www.youtube.com/embed/${v.id}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-        this.style.display = 'none'; // hide button after play starts
+        this.style.display = 'none';
       });
 
       grid.appendChild(div);
     });
+
   } catch (e) {
+    document.getElementById("loadingState").style.display = "none";
+    document.getElementById("errorState").style.display = "block";
     console.error(e);
   }
 })();
